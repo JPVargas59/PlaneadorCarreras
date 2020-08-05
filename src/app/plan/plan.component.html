@@ -1,0 +1,50 @@
+<div class="ui basic segment">
+  <div class="ui buttons">
+    <button class="ui button" routerLink="..">Escoger otro plan</button>
+    <button class="ui green button" *ngIf="!(user$ | async)" (click)="signIn()">Iniciar sesión y guardar tu plan</button>
+    <button class="ui green button" *ngIf="user$ | async" (click)="save()">Guardar plan</button>
+  </div>
+  <div class="ui header" *ngIf="nombreCarrera | async as c">
+    <h1>{{plan}} - {{c.nombre}}</h1>
+    <div class="ui blue progress" id="progreso">
+      <div class="bar"></div>
+      <div class="label">{{materiasEscogidas / materiasSinEscoger | percent}} planeado</div>
+    </div>
+  </div>
+  <p>Escogiendo materias para <span class="ui header" [ngClass]="colors[this.selector]">semestre {{this.selector}}</span></p>
+  <div class="ui buttons" *ngFor="let semestre of semestres">
+    <button
+      class="ui basic button"
+      [ngClass]="colors[semestre]"
+      (click)="selector = semestre">
+      Semestre {{semestre}}
+    </button>
+  </div>
+</div>
+<div class="ui equal width stackable grid">
+  <div class="column" *ngFor="let semestre of semestres">
+    <div class="ui basic segment">
+      <div class="ui checkbox">
+        <input id="semestre-{{semestre}}" class="hidden" type="checkbox" [(ngModel)]="semestresTerminados[semestre]" (click)="clickSemestre(semestre)" name="semestre-{{semestre}}">
+        <label for="semestre-{{semestre}}" >Semestre {{semestre}}</label>
+      </div>
+      <div class="ui divided selection list" *ngIf="materias">
+        <div class="item" style="margin: 0;" *ngFor="let materia of filter(materias, semestre)" (click)="clickMateria(materia)">
+          <div
+            class="ui vertical segment"
+            [ngClass]="materia.selected != undefined ? colors[materia.selected] : ''"
+            style="margin: 0; padding: 0.2pc">
+            <div class="content">
+              <p>{{materia.clave}}</p>
+              <p class="ui tiny header"
+                 [ngClass]="materia.selected != undefined ? colors[materia.selected] : ''"
+                 [class.grey]="materia.selected == undefined"
+              >
+                {{materia.materia}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

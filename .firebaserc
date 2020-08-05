@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "planeadortec"
+  },
+  "targets": {
+    "planeadortec": {
+      "hosting": {
+        "micarrera": [
+          "micarrera"
+        ]
+      }
+    }
+  }
+}

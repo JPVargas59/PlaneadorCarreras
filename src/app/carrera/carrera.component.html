@@ -1,0 +1,18 @@
+<div class="ui middle aligned center aligned grid" style="height: 90vh">
+  <div class="column eight wide large screen sixteen wide mobile">
+    <div class="ui segment">
+      <div class="ui blue header" *ngIf="carrera | async as c">
+        {{c.nombre}}
+        <span class="sub header">Escoge tu plan</span>
+      </div>
+      <div class="ui relaxed divided list" *ngIf="planes | async as p">
+        <a class="item" [routerLink]="plan.siglas" *ngFor="let plan of p">
+          <div class="content">
+            <div class="header">{{plan.siglas}}</div>
+          </div>
+        </a>
+        <h2 *ngIf="p.length == 0">Esta carrera no cuenta con planes 2011 o superior</h2>
+      </div>
+    </div>
+  </div>
+</div>

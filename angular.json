@@ -24,9 +24,13 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/semantic/semantic.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "src/assets/semantic/semantic.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -119,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "planeadorTec"
+    }
+  },
+  "defaultProject": "planeadorTec",
+  "cli": {
+    "analytics": "78620cf6-b236-4765-bbfa-f037a01c8ecf"
+  }
 }

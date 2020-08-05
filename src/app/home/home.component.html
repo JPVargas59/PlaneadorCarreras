@@ -1,0 +1,32 @@
+<div class="ui center aligned middle aligned grid" style="height: 90vh">
+  <div class="column eight wide large screen sixteen wide mobile">
+    <div class="ui segment">
+      <h1 class="ui header">
+        Busca tu carrera
+      </h1>
+      <form class="ui form" (ngSubmit)="onSubmit()">
+        <div class="field">
+          <select class="ui search dropdown" [(ngModel)]="selection" name="selection">
+            <option value="">Escoge tu carrera</option>
+            <option *ngFor="let carrera of carreras | async" [routerLink]="carrera.siglas" [value]="carrera.siglas">{{carrera.siglas}} - {{carrera.nombre}}</option>
+          </select>
+        </div>
+        <button class="ui fluid green button" type="submit">Buscar</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="ui basic segment">
+  <div class="ui huge header">
+    Encuentra aquí todas las carreras
+  </div>
+  <div class="ui relaxed divided list">
+    <a class="item" [routerLink]="carrera.siglas" *ngFor="let carrera of carreras | async">
+      <div class="content">
+        <div class="header">{{carrera.siglas}}</div>
+        <div class="description">{{carrera.nombre}}</div>
+      </div>
+    </a>
+  </div>
+</div>
+
